@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace basics;
+namespace basics.Types;
 
 public class ValueTypes : DisplayableClass
 {
@@ -19,6 +19,14 @@ public class ValueTypes : DisplayableClass
         sb.AppendLine(new SimpleTypes.IEEEBinaryFloatingPoint().DisplayTypePropertiesAndValues());
 
         sb.AppendLine(new SimpleTypes.HiPrecisionDecimalFloatingPoint().DisplayTypePropertiesAndValues());
+
+        sb.AppendLine(new EnumTypes().DisplayTypePropertiesAndValues());
+
+        sb.AppendLine(nameof(StructTypes));
+
+        sb.AppendLine(new NullableValueTypes().DisplayTypePropertiesAndValues());
+
+        sb.AppendLine(new TupleTypes().DisplayTypePropertiesAndValues());
 
         return sb.ToString();
     }
@@ -57,5 +65,31 @@ public class ValueTypes : DisplayableClass
         {
             public decimal Decimal { get; set; } = 1.5E6m; // =1500000 | ±1.0 x 10-28 to ±7.9228 x 1028
         }
+    }
+
+    internal class EnumTypes
+    {
+        public Season EnumSeason { get; set; } = Season.Summer;
+        public enum Season
+        {
+            Spring,
+            Summer,
+            Autumn,
+            Winter
+        }
+    }
+
+    internal struct StructTypes //User-defined types of the form
+    {
+    }
+
+    internal class NullableValueTypes
+    {
+        public int? NullableInt { get; set; } = null;
+    }
+
+    internal class TupleTypes
+    {
+        public (int, int) Tuple { get; set; } = (1, 1);
     }
 }
